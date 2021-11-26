@@ -23,44 +23,30 @@ interface AppPage {
 
 const appPages: AppPage[] = [
   {
-    title: 'Inbox',
-    url: '/page/Inbox',
-    iosIcon: mailOutline,
-    mdIcon: mailSharp
-  },
-  {
-    title: 'Outbox',
-    url: '/page/Outbox',
+    title: 'Home',
+    url: '/page/Home',
     iosIcon: paperPlaneOutline,
     mdIcon: paperPlaneSharp
   },
   {
-    title: 'Favorites',
-    url: '/page/Favorites',
+    title: 'Player',
+    url: '/page/Player',
+    iosIcon: paperPlaneOutline,
+    mdIcon: paperPlaneSharp
+  },
+  {
+    title: 'Rank',
+    url: '/page/Rank',
+    iosIcon: paperPlaneOutline,
+    mdIcon: paperPlaneSharp
+  },
+  {
+    title: 'Ratio',
+    url: '/page/Ratio',
     iosIcon: heartOutline,
     mdIcon: heartSharp
   },
-  {
-    title: 'Archived',
-    url: '/page/Archived',
-    iosIcon: archiveOutline,
-    mdIcon: archiveSharp
-  },
-  {
-    title: 'Trash',
-    url: '/page/Trash',
-    iosIcon: trashOutline,
-    mdIcon: trashSharp
-  },
-  {
-    title: 'Spam',
-    url: '/page/Spam',
-    iosIcon: warningOutline,
-    mdIcon: warningSharp
-  }
 ];
-
-const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
 const Menu: React.FC = () => {
   const location = useLocation();
@@ -69,8 +55,8 @@ const Menu: React.FC = () => {
     <IonMenu contentId="main" type="overlay">
       <IonContent>
         <IonList id="inbox-list">
-          <IonListHeader>Inbox</IonListHeader>
-          <IonNote>hi@ionicframework.com</IonNote>
+          <IonListHeader>LOL PERFTOOLS</IonListHeader>
+          <IonNote>League Of Legends Performance Tools</IonNote>
           {appPages.map((appPage, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
@@ -84,13 +70,14 @@ const Menu: React.FC = () => {
         </IonList>
 
         <IonList id="labels-list">
+          {/*
           <IonListHeader>Labels</IonListHeader>
           {labels.map((label, index) => (
             <IonItem lines="none" key={index}>
               <IonIcon slot="start" icon={bookmarkOutline} />
               <IonLabel>{label}</IonLabel>
             </IonItem>
-          ))}
+          ))}*/}
         </IonList>
       </IonContent>
     </IonMenu>
