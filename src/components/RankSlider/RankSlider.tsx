@@ -2,6 +2,7 @@ import React from 'react';
 import { IonSlides, IonSlide, IonContent, IonImg } from '@ionic/react';
 import './RankSlider.css';
 import { image } from 'ionicons/icons';
+import useApi from '../../hook/useApi';
 
 // Optional parameters to pass to the swiper instance.
 // See http://idangero.us/swiper/api/ for valid options.
@@ -18,12 +19,14 @@ interface ContainerProps {
 
 
 const RankComponent: React.FC<ContainerProps> = ({ name }) => {
+    const {user} = useApi();
 
     return (
         <IonContent>
             <IonSlides pager={true} options={slideOpts}>
                 <IonSlide>
                     <img src="assets/rank/Emblem_Grandmaster.png" />
+                  
                 </IonSlide>
                 <IonSlide>
                     <h1>Slide 2</h1>
