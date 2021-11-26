@@ -1,5 +1,4 @@
 
-import bgHome from '../../assets/img/logobg.png';
 import './Home.css';
 import {
     IonButtons,
@@ -17,7 +16,7 @@ const HomeComponent: React.FC<ContainerProps> = ({ name }) => {
     return (
         <div className="container">
             <strong>PERFORMANCE TOOLS</strong>
-            <img src={bgHome} />
+            <img src="assets/img/logobg.png" />
             <IonItem className="btnStart" routerLink="/page/Player" routerDirection="none" lines="none" detail={false}><strong>Start</strong></IonItem>
         </div>
     );
