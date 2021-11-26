@@ -1,23 +1,27 @@
 import React from 'react';
-import { IonSlides, IonSlide, IonContent } from '@ionic/react';
+import { IonSlides, IonSlide, IonContent, IonImg } from '@ionic/react';
 import './RankSlider.css';
+import { image } from 'ionicons/icons';
+
+// Optional parameters to pass to the swiper instance.
+// See http://idangero.us/swiper/api/ for valid options.
+const slideOpts = {
+    initialSlide: 0,
+    speed: 400
+};
+
 
 interface ContainerProps {
     name: string;
 }
 
-const RankSliderComponent: React.FC<ContainerProps> = ({ name }) => {
-
-    const slideOpts = {
-        initialSlide: 1,
-        speed: 400
-    };
+const RankComponent: React.FC<ContainerProps> = ({ name }) => {
 
     return (
         <IonContent>
             <IonSlides pager={true} options={slideOpts}>
                 <IonSlide>
-                    <h1>Slide 1</h1>
+                    <img src="assets/rank/Emblem_Grandmaster.png" />
                 </IonSlide>
                 <IonSlide>
                     <h1>Slide 2</h1>
@@ -30,4 +34,4 @@ const RankSliderComponent: React.FC<ContainerProps> = ({ name }) => {
     )
 };
 
-export default RankSliderComponent;
+export default RankComponent;

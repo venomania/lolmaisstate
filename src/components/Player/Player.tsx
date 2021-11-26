@@ -25,7 +25,7 @@ const PlayerComponent: React.FC<ContainerProps> = ({ name }) => {
             <IonList>
                 <IonItem className="customInput">
                     <IonInput placeholder="Player Name" value={text}></IonInput>
-                    <IonButton shape="round" className="searchBtn" routerLink="/page/RankSlider" routerDirection="none">
+                    <IonButton shape="round" className="searchBtn" routerLink="/page/Rank" routerDirection="none">
                         <IonIcon icon={search} />
                     </IonButton>
                 </IonItem>

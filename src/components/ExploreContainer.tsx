@@ -14,7 +14,7 @@ const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
     content = <HomeComponent name={name} />
   } else if (name == "Player") {
     content = <PlayerComponent name={name} />
-  } else if (name == "RankSlider") {
+  } else if (name == "Rank") {
     content = <RankComponent name={name} />
   }
 
