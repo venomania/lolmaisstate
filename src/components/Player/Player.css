@@ -1,5 +1,8 @@
-input {
+.customInput {
     border: 1px solid var(--ion-color-primary) !important;
+    width: 100% !important;
+    border-radius: 25px !important;
+    height: 50px;
 }
 
 .container p {
@@ -7,4 +10,12 @@ input {
     margin-bottom: 30px;
     font-size: 20px;
     max-width: 60%;
+}
+
+.customInput .searchBtn {
+    --ion-background-color: var(--ion-color-primary);
+    --ion-text-color: var(--ion-color-light);
+    text-align: center;
+    height: 38px !important;
+    width: 38px !important;
 }
