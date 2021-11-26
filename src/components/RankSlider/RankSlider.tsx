@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { IonSlides, IonSlide, IonContent, IonImg } from '@ionic/react';
 import './RankSlider.css';
 import { image } from 'ionicons/icons';
@@ -18,13 +18,15 @@ interface ContainerProps {
 
 const RankComponent: React.FC<ContainerProps> = ({ name }) => {
     const {user} = useApi();
-
+    useEffect(() => {
+        
+      });
     return (
         <IonContent>
             <IonSlides pager={true} options={slideOpts}>
                 <IonSlide>
                     <img src="assets/rank/Emblem_Grandmaster.png" />
-                  
+        
                 </IonSlide>
                 <IonSlide>
                     <h1>Slide 2</h1>

@@ -5,10 +5,12 @@ import {
     IonInput,
     IonLabel,
     IonIcon,
-    IonButton
+    IonButton,
+    IonRedirect
 } from '@ionic/react';
 import { search } from 'ionicons/icons';
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import useApi from '../../hook/useApi';
 import './Player.css';
 
@@ -19,7 +21,11 @@ interface ContainerProps {
 const PlayerComponent: React.FC<ContainerProps> = ({ name }) => {
 
     const [text, setText] = useState<string>("");
-    const {getUser} = useApi();
+    const {getUser, user} = useApi();
+
+    if(user){
+        return <Redirect to={`/page/Rank`} />
+    }
 
     return (
         <div className="container">
@@ -27,7 +33,8 @@ const PlayerComponent: React.FC<ContainerProps> = ({ name }) => {
             <IonList>
                 <IonItem className="customInput">
                     <IonInput placeholder="Player Name" value={text}  onIonChange={e => setText(e.detail.value!)}></IonInput>
-                    <IonButton shape="round" className="searchBtn" routerLink="/page/Rank" routerDirection="none"  onClick={() =>getUser(text) }>
+                    <IonButton shape="round" className="searchBtn"  routerDirection="none"  onClick={() =>getUser(text) }>
+                        
                         <IonIcon icon={search} />
                     </IonButton>
                 </IonItem>
