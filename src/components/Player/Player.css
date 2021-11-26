@@ -19,3 +19,7 @@
     height: 38px !important;
     width: 38px !important;
 }
+
+ion-item {
+    --inner-padding-end: 5px;
+}

@@ -15,6 +15,8 @@ interface ContainerProps {
     name: string;
 }
 
+
+
 const RankComponent: React.FC<ContainerProps> = ({ name }) => {
 
     return (
