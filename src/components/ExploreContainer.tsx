@@ -1,4 +1,3 @@
-
 import './ExploreContainer.css';
 import HomeComponent from '../components/Home/Home';
 import PlayerComponent from '../components/Player/Player';
@@ -9,6 +8,7 @@ interface ContainerProps {
 }
 
 const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
+
   var content;
   if (name == "Home") {
     content = <HomeComponent name={name} />

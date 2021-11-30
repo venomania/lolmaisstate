@@ -5,16 +5,15 @@ import {
     IonInput,
     IonLabel,
     IonIcon,
-    IonButton
+    IonButton,
+    IonRedirect
 } from '@ionic/react';
 import { search } from 'ionicons/icons';
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import useApi from '../../hook/useApi';
 import './Player.css';
-import { Storage } from '@ionic/storage';
 
-const store = new Storage();
-await store.create();
 
 interface ContainerProps {
     name: string;
@@ -22,21 +21,13 @@ interface ContainerProps {
 
 const PlayerComponent: React.FC<ContainerProps> = ({ name }) => {
 
+    const [text, setText] = useState<string>("");
+    const { getUser, user } = useApi();
 
 
-    const getUser = (text) => {
-
+    if (user) {
+        return <Redirect to={`/page/Rank`} />
     }
-
-    getUser.then((users) => {
-        users.forEach(user => {
-            Object.entries(user).forEach(([key, value]) => {
-                store.set(key, value);
-            })
-        })
-    })
-
-
 
     return (
         <div className="container">
@@ -44,7 +35,8 @@ const PlayerComponent: React.FC<ContainerProps> = ({ name }) => {
             <IonList>
                 <IonItem className="customInput">
                     <IonInput placeholder="Player Name" value={text} onIonChange={e => setText(e.detail.value!)}></IonInput>
-                    <IonButton shape="round" className="searchBtn" routerLink="/page/Rank" routerDirection="none" onClick={() => getUser(text)}>
+                    <IonButton shape="round" className="searchBtn" onClick={() => getUser(text)}>
+
                         <IonIcon icon={search} />
                     </IonButton>
                 </IonItem>
