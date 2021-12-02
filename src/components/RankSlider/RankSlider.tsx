@@ -1,10 +1,12 @@
 import React, { useEffect, useContext } from 'react';
-import { IonSlides, IonSlide, IonContent, IonImg, IonList, IonItem } from '@ionic/react';
+import { IonSlides, IonSlide, IonContent, IonImg, IonList, IonItem, IonButton, IonIcon } from '@ionic/react';
 import './RankSlider.css';
-import { image } from 'ionicons/icons';
+import { image, logoWhatsapp, } from 'ionicons/icons';
 import useApi from '../../hook/useApi';
 import axios from 'axios';
 import { Stats, StatsContext } from '../Player/StatsContext';
+import useSharing from '../../hook/useSharing';
+import { sharing } from '../../hook';
 
 // Optional parameters to pass to the swiper instance.
 // See http://idangero.us/swiper/api/ for valid options.
@@ -24,7 +26,7 @@ interface Url {
 const RankComponent: React.FC<ContainerProps> = ({ name }) => {
     const { user } = useApi();
     const context = useContext(StatsContext);
-
+    const  { WhatsApp } = sharing();
     useEffect(() => {
         console.log("user: ", user);
     });
@@ -37,9 +39,12 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
         <IonContent>
             <IonSlides pager={true} options={slideOpts}>
                 {context.stats.map((stats) => {
-                    var rank = stats.tier;
+                    
+                    var rank = stats.tier?stats.tier:null;
+                    if(rank !==  null){
                     rank.toLowerCase();
                     rank = capitalizeFirstLetter(rank);
+                    }
                     const icon = `assets/rank/Emblem_${rank}.png`;
                     return (<IonSlide>
                         <IonList>
@@ -71,9 +76,15 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
                             <IonItem>
                                 <p>{stats.wins}</p>
                             </IonItem>
+                            <IonItem>
+                            <IonButton onClick={() => WhatsApp("r")}> <IonIcon slot="end" icon={logoWhatsapp} /></IonButton>   
+
+                            </IonItem>
                         </IonList>
                     </IonSlide>)
                 })}
+
+            
             </IonSlides>
         </IonContent>
     )
