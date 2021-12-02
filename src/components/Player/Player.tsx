@@ -33,7 +33,7 @@ const PlayerComponent: React.FC<ContainerProps> = ({ name }) => {
             <IonList>
                 <IonItem className="customInput">
                     <IonInput placeholder="Player Name" value={text}  onIonChange={e => setText(e.detail.value!)}></IonInput>
-                    <IonButton shape="round" className="searchBtn"  routerDirection="none"  onClick={() =>getUser(text) }>
+                    <IonButton shape="round" className="searchBtn"   onClick={() =>getUser(text) }>
                         
                         <IonIcon icon={search} />
                     </IonButton>
