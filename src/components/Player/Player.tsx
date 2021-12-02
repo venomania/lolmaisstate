@@ -14,6 +14,7 @@ import { Redirect } from 'react-router-dom';
 import useApi from '../../hook/useApi';
 import './Player.css';
 
+
 interface ContainerProps {
     name: string;
 }
@@ -21,9 +22,10 @@ interface ContainerProps {
 const PlayerComponent: React.FC<ContainerProps> = ({ name }) => {
 
     const [text, setText] = useState<string>("");
-    const {getUser, user} = useApi();
+    const { getUser, user } = useApi();
 
-    if(user){
+
+    if (user) {
         return <Redirect to={`/page/Rank`} />
     }
 
@@ -32,9 +34,9 @@ const PlayerComponent: React.FC<ContainerProps> = ({ name }) => {
             <p>Search a player by his name to get his statistics !</p>
             <IonList>
                 <IonItem className="customInput">
-                    <IonInput placeholder="Player Name" value={text}  onIonChange={e => setText(e.detail.value!)}></IonInput>
-                    <IonButton shape="round" className="searchBtn"   onClick={() =>getUser(text) }>
-                        
+                    <IonInput placeholder="Player Name" value={text} onIonChange={e => setText(e.detail.value!)}></IonInput>
+                    <IonButton shape="round" className="searchBtn" onClick={() => getUser(text)}>
+
                         <IonIcon icon={search} />
                     </IonButton>
                 </IonItem>
