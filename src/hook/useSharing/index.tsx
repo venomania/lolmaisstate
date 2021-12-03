@@ -5,9 +5,9 @@ import { App, URLOpenListenerEvent } from '@capacitor/app';
 
 const useSharing = () =>{
 
-    const WhatsApp =(url: string ) =>{        
+    const WhatsApp =() =>{        
   
-        url = "http://localhost:8100/page/Player"
+        const url = "http://localhost:8100/page/Player"
         SocialSharing.share("Venez voir vos stats 😘 : "+ url );
     }
     return {

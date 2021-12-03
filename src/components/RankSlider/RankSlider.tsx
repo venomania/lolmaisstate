@@ -80,7 +80,7 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
 
                             </IonItem>
                             <IonItem>
-                                <IonButton onClick={() => WhatsApp("r")}> <IonIcon slot="end" icon={shareSocial} /></IonButton>
+                                <IonButton onClick={() => WhatsApp()}> <IonIcon slot="end" icon={shareSocial} /></IonButton>
 
                             </IonItem>
                         </IonList>
