@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState, useMemo } from 'react';
 import { IonSlides, IonSlide, IonContent, IonImg, IonList, IonItem } from '@ionic/react';
 import './RankSlider.css';
 import { image } from 'ionicons/icons';
@@ -24,10 +24,14 @@ interface Url {
 const RankComponent: React.FC<ContainerProps> = ({ name }) => {
     const { user } = useApi();
     const context = useContext(StatsContext);
+    const username = useMemo(() => {
+        if (context?.stats[0]?.summonerName) {
+            return context.stats[0].summonerName
+        }
+        return "Player"
 
-    useEffect(() => {
-        console.log("user: ", user);
-    });
+    }, [context]);
+
 
     function capitalizeFirstLetter(string: string | any[]) {
         return string[0].toUpperCase() + string.slice(1);
@@ -35,41 +39,38 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
 
     return (
         <IonContent>
+            <IonItem className="bandeau">
+                <strong className="ion-text-center">{username}'s statistics</strong>
+            </IonItem>
             <IonSlides pager={true} options={slideOpts}>
-                {context.stats.map((stats) => {
+                {context.stats.map((stats, index) => {
                     var rank = stats.tier;
                     rank.toLowerCase();
                     rank = capitalizeFirstLetter(rank);
                     const icon = `assets/rank/Emblem_${rank}.png`;
-                    return (<IonSlide>
+                    return (<IonSlide key={index}>
                         <IonList>
+                            <IonItem className="leagueCont">
+                                <strong className="ion-text-center">League {stats.queueType}</strong>
+                            </IonItem>
+                            <IonItem className="ion-text-center">
+                                <img src={icon} width={150} />
+                            </IonItem>
+                            <IonItem>
+                                <strong className="ion-text-center">{stats.tier} {stats.rank}</strong>
+                            </IonItem>
+                            <IonItem>
+                                <div className="countsCont">
+                                    <div className="counts">
+                                        <p className="ion-text-center counts">Losses : {stats.losses}</p>
+                                    </div>
+                                    <div>
+                                        <p className="ion-text-center counts">Wins : {stats.wins}</p>
+                                    </div>
+                                </div>
+                                <p className="ion-text-center">League points : {stats.leaguePoints}</p>
 
-                            <IonItem>
-                                <strong>{stats.summonerName}</strong>
-                            </IonItem>
-                            <IonItem>
-                                <img src={icon} width={100} />
-                            </IonItem>
-                            <IonItem>
-                                <p>{stats.tier}</p>
-                            </IonItem>
-                            <IonItem>
-                                <p>{stats.inactive}</p>
-                            </IonItem>
-                            <IonItem>
-                                <p>{stats.leaguePoints}</p>
-                            </IonItem>
-                            <IonItem>
-                                <p>{stats.losses}</p>
-                            </IonItem>
-                            <IonItem>
-                                <p>{stats.queueType}</p>
-                            </IonItem>
-                            <IonItem>
-                                <p>{stats.rank}</p>
-                            </IonItem>
-                            <IonItem>
-                                <p>{stats.wins}</p>
+
                             </IonItem>
                         </IonList>
                     </IonSlide>)

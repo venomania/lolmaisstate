@@ -17,7 +17,7 @@ const HomeComponent: React.FC<ContainerProps> = ({ name }) => {
         <div className="container">
             <strong>PERFORMANCE TOOLS</strong>
             <img src="assets/img/logobg.png" />
-            <IonItem className="btnStart" routerLink="/page/Player" routerDirection="none" lines="none" detail={false}><strong>Start</strong></IonItem>
+            <IonItem className="btnStart ion-text-center" routerLink="/page/Player" routerDirection="none" lines="none" detail={false}><strong>Start</strong></IonItem>
         </div>
     );
 };

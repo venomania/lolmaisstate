@@ -9,14 +9,32 @@ import {
   IonMenuToggle,
   IonNote,
 } from '@ionic/react';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
 import { useLocation } from 'react-router-dom';
 import { archiveOutline, archiveSharp, bookmarkOutline, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
 import './Menu.css';
+import {
+  IconLookup,
+  IconDefinition,
+  findIconDefinition
+} from '@fortawesome/fontawesome-svg-core'
+
+library.add(fas);
+
+const medalLookup: IconLookup = { prefix: 'fas', iconName: 'medal' };
+const medalIconDefinition: IconDefinition = findIconDefinition(medalLookup);
+const homeLookup: IconLookup = { prefix: 'fas', iconName: 'home' };
+const homeIconDefinition: IconDefinition = findIconDefinition(homeLookup);
+const userLookup: IconLookup = { prefix: 'fas', iconName: 'user' };
+const userIconDefinition: IconDefinition = findIconDefinition(userLookup);
+const pieChartLookup: IconLookup = { prefix: 'fas', iconName: 'chart-pie' };
+const pieChartIconDefinition: IconDefinition = findIconDefinition(pieChartLookup);
 
 interface AppPage {
   url: string;
-  iosIcon: string;
+  fontawesomeIcon: IconDefinition;
   mdIcon: string;
   title: string;
 }
@@ -25,25 +43,25 @@ const appPages: AppPage[] = [
   {
     title: 'Home',
     url: '/page/Home',
-    iosIcon: paperPlaneOutline,
+    fontawesomeIcon: homeIconDefinition,
     mdIcon: paperPlaneSharp
   },
   {
     title: 'Player',
     url: '/page/Player',
-    iosIcon: paperPlaneOutline,
+    fontawesomeIcon: userIconDefinition,
     mdIcon: paperPlaneSharp
   },
   {
     title: 'Rank',
     url: '/page/Rank',
-    iosIcon: paperPlaneOutline,
+    fontawesomeIcon: medalIconDefinition,
     mdIcon: paperPlaneSharp
   },
   {
     title: 'Ratio',
     url: '/page/Ratio',
-    iosIcon: heartOutline,
+    fontawesomeIcon: pieChartIconDefinition,
     mdIcon: heartSharp
   },
 ];
@@ -61,7 +79,7 @@ const Menu: React.FC = () => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
                 <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
-                  <IonIcon slot="start" ios={appPage.iosIcon} md={appPage.mdIcon} />
+                  <FontAwesomeIcon icon={appPage.fontawesomeIcon} />
                   <IonLabel>{appPage.title}</IonLabel>
                 </IonItem>
               </IonMenuToggle>
