@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "LOL PERF",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}

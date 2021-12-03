@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { IonSlides, IonSlide, IonContent, IonImg, IonList, IonItem, IonButton, IonIcon } from '@ionic/react';
 import './RankSlider.css';
-import { image, logoWhatsapp, } from 'ionicons/icons';
+import {  shareSocial, } from 'ionicons/icons';
 import useApi from '../../hook/useApi';
 import axios from 'axios';
 import { Stats, StatsContext } from '../Player/StatsContext';
@@ -42,8 +42,8 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
                     
                     var rank = stats.tier?stats.tier:null;
                     if(rank !==  null){
-                    rank.toLowerCase();
-                    rank = capitalizeFirstLetter(rank);
+                        rank = rank.toLowerCase();
+                        rank = capitalizeFirstLetter(rank);
                     }
                     const icon = `assets/rank/Emblem_${rank}.png`;
                     return (<IonSlide>
@@ -77,7 +77,7 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
                                 <p>{stats.wins}</p>
                             </IonItem>
                             <IonItem>
-                            <IonButton onClick={() => WhatsApp("r")}> <IonIcon slot="end" icon={logoWhatsapp} /></IonButton>   
+                            <IonButton onClick={() => WhatsApp("r")}> <IonIcon slot="end" icon={shareSocial} /></IonButton>   
 
                             </IonItem>
                         </IonList>
