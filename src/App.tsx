@@ -4,7 +4,7 @@ import { Redirect, Route } from 'react-router-dom';
 import Menu from './components/Menu';
 import Page from './pages/Page';
 
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { StatsContext, Stats } from './components/Player/StatsContext';
 
 /* Core CSS required for Ionic components to work properly */
@@ -30,22 +30,34 @@ import './theme/variables.css';
 const App: React.FC = () => {
   const [stats, setStats] = useState<Stats[]>([]);
 
+
   return (
     <StatsContext.Provider value={{ stats, setStats }}>
       <IonApp>
+    
         <IonReactRouter>
           <IonSplitPane contentId="main">
+        
             <Menu />
+         
+          
             <IonRouterOutlet id="main">
+            
               <Route path="/" exact={true}>
                 <Redirect to="/page/Home" />
               </Route>
+           
+                 
               <Route path="/page/:name" exact={true}>
+                
                 <Page />
               </Route>
+               
             </IonRouterOutlet>
+         
           </IonSplitPane>
         </IonReactRouter>
+      
       </IonApp>
     </StatsContext.Provider>
   );

@@ -66,6 +66,10 @@ const appPages: AppPage[] = [
   },
 ];
 
+interface ContainerProps {
+  name: string;
+}
+
 const Menu: React.FC = () => {
   const location = useLocation();
 

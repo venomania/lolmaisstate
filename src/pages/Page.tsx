@@ -9,6 +9,7 @@ const Page: React.FC = () => {
 
   return (
     <IonPage>
+      {name !== "Home"&&(
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
@@ -17,6 +18,7 @@ const Page: React.FC = () => {
           <IonTitle>{name}</IonTitle>
         </IonToolbar>
       </IonHeader>
+      )}
 
       <IonContent fullscreen>
         <ExploreContainer name={name} />
