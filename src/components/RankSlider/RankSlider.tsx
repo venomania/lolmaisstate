@@ -42,7 +42,7 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
 
     return (
         <IonContent>
-            <IonItem className="bandeau">
+            <IonItem className="bandeau ion-no-padding">
                 <strong className="ion-text-center">{username}'s statistics</strong>
             </IonItem>
             <IonSlides pager={true} options={slideOpts}>
@@ -57,31 +57,37 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
                     const icon = `assets/rank/Emblem_${rank}.png`;
                     return (<IonSlide key={index}>
                         <IonList>
-                            <IonItem className="leagueCont">
+                            <IonItem className="leagueCont ion-no-padding">
                                 <strong className="ion-text-center">League {stats.queueType}</strong>
                             </IonItem>
-                            <IonItem className="ion-text-center">
+                            <IonItem className="ion-text-center ion-no-padding">
                                 <img src={icon} width={150} />
                             </IonItem>
-                            <IonItem>
-                                <strong className="ion-text-center">{stats.tier} {stats.rank}</strong>
+                            <IonItem className="ion-text-center ion-no-padding">
+                                <div className="rankCont">
+                                    <strong className="ion-text-center">{stats.tier} {stats.rank}</strong>
+                                    <p className="ion-text-center">{stats.leaguePoints} league points</p>
+                                </div>
                             </IonItem>
-                            <IonItem>
+                            <IonItem className="statsItem ion-no-padding">
+
                                 <div className="countsCont">
                                     <div className="counts">
-                                        <p className="ion-text-center counts">Losses : {stats.losses}</p>
+                                        <p className="ion-text-center winsCont">Wins</p>
+                                        <div>
+                                            <p className="ion-text-center winsCont">{stats.wins}</p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <p className="ion-text-center counts">Wins : {stats.wins}</p>
+                                    <div className="counts">
+                                        <p className="ion-text-center lossesCont">Losses</p>
+                                        <div>
+                                            <p className="ion-text-center lossesCont">{stats.losses}</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <p className="ion-text-center">League points : {stats.leaguePoints}</p>
-
-
                             </IonItem>
-                            <IonItem>
+                            <IonItem className="ion-no-padding">
                                 <IonButton onClick={() => WhatsApp("r")}> <IonIcon slot="end" icon={shareSocial} /></IonButton>
-
                             </IonItem>
                         </IonList>
                     </IonSlide>)

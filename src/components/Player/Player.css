@@ -21,5 +21,6 @@
 }
 
 ion-item {
-    --inner-padding-end: 5px;
+    --inner-padding-end: 0;
+    --inner-padding-start: 0;
 }
