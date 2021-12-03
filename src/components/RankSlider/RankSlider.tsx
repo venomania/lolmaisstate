@@ -1,10 +1,12 @@
-import React, { useEffect, useContext, useState, useMemo } from 'react';
-import { IonSlides, IonSlide, IonContent, IonImg, IonList, IonItem } from '@ionic/react';
+import React, { useEffect, useContext, useMemo } from 'react';
+import { IonSlides, IonSlide, IonContent, IonImg, IonList, IonItem, IonButton, IonIcon } from '@ionic/react';
 import './RankSlider.css';
-import { image } from 'ionicons/icons';
+import { shareSocial, } from 'ionicons/icons';
 import useApi from '../../hook/useApi';
 import axios from 'axios';
 import { Stats, StatsContext } from '../Player/StatsContext';
+import useSharing from '../../hook/useSharing';
+import { sharing } from '../../hook';
 
 // Optional parameters to pass to the swiper instance.
 // See http://idangero.us/swiper/api/ for valid options.
@@ -32,6 +34,7 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
 
     }, [context]);
 
+    const { WhatsApp } = sharing();
 
     function capitalizeFirstLetter(string: string | any[]) {
         return string[0].toUpperCase() + string.slice(1);
@@ -43,10 +46,14 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
                 <strong className="ion-text-center">{username}'s statistics</strong>
             </IonItem>
             <IonSlides pager={true} options={slideOpts}>
+
                 {context.stats.map((stats, index) => {
-                    var rank = stats.tier;
-                    rank.toLowerCase();
-                    rank = capitalizeFirstLetter(rank);
+
+                    var rank = stats.tier ? stats.tier : null;
+                    if (rank !== null) {
+                        rank = rank.toLowerCase();
+                        rank = capitalizeFirstLetter(rank);
+                    }
                     const icon = `assets/rank/Emblem_${rank}.png`;
                     return (<IonSlide key={index}>
                         <IonList>
@@ -72,9 +79,15 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
 
 
                             </IonItem>
+                            <IonItem>
+                                <IonButton onClick={() => WhatsApp("r")}> <IonIcon slot="end" icon={shareSocial} /></IonButton>
+
+                            </IonItem>
                         </IonList>
                     </IonSlide>)
                 })}
+
+
             </IonSlides>
         </IonContent>
     )
