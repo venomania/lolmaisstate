@@ -1,12 +1,13 @@
 import React, { useEffect, useContext, useMemo } from 'react';
 import { IonSlides, IonSlide, IonContent, IonImg, IonList, IonItem, IonButton, IonIcon } from '@ionic/react';
 import './RankSlider.css';
-import { shareSocial, } from 'ionicons/icons';
+import { rose, shareSocial, } from 'ionicons/icons';
 import useApi from '../../hook/useApi';
 import axios from 'axios';
 import { Stats, StatsContext } from '../Player/StatsContext';
 import useSharing from '../../hook/useSharing';
-import { sharing } from '../../hook';
+import { Pdf, sharing } from '../../hook';
+
 
 // Optional parameters to pass to the swiper instance.
 // See http://idangero.us/swiper/api/ for valid options.
@@ -24,6 +25,8 @@ interface Url {
 }
 
 const RankComponent: React.FC<ContainerProps> = ({ name }) => {
+    const { WhatsApp } = sharing();
+    const { goPdf } =  Pdf();
     const { user } = useApi();
     const context = useContext(StatsContext);
     const username = useMemo(() => {
@@ -34,7 +37,9 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
 
     }, [context]);
 
-    const { WhatsApp } = sharing();
+
+
+  
 
     function capitalizeFirstLetter(string: string | any[]) {
         return string[0].toUpperCase() + string.slice(1);
@@ -45,7 +50,7 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
             <IonItem className="bandeau">
                 <strong className="ion-text-center">{username}'s statistics</strong>
             </IonItem>
-            <IonSlides pager={true} options={slideOpts}>
+            <IonSlides pager={true} options={slideOpts}  >
 
                 {context.stats.map((stats, index) => {
 
@@ -55,16 +60,16 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
                         rank = capitalizeFirstLetter(rank);
                     }
                     const icon = `assets/rank/Emblem_${rank}.png`;
-                    return (<IonSlide key={index}>
-                        <IonList>
+                    return (<IonSlide key={index} id={stats.queueType}>
+                        <IonList >
                             <IonItem className="leagueCont">
                                 <strong className="ion-text-center">League {stats.queueType}</strong>
                             </IonItem>
                             <IonItem className="ion-text-center">
-                                <img src={icon} width={150} />
+                                <img src={icon} width={150}  />
                             </IonItem>
                             <IonItem>
-                                <strong className="ion-text-center">{stats.tier} {stats.rank}</strong>
+                                <strong className="ion-text-center" >{stats.tier} {stats.rank}</strong>
                             </IonItem>
                             <IonItem>
                                 <div className="countsCont">
@@ -80,7 +85,8 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
 
                             </IonItem>
                             <IonItem>
-                                <IonButton onClick={() => WhatsApp()}> <IonIcon slot="end" icon={shareSocial} /></IonButton>
+                            <IonButton onClick={() => WhatsApp()}> <IonIcon slot="end" icon={shareSocial} /></IonButton>
+                            <IonButton onClick={() => goPdf(stats.queueType)}> <IonIcon slot="end" icon={rose} /></IonButton>
 
                             </IonItem>
                         </IonList>
