@@ -7,7 +7,9 @@ import axios from 'axios';
 import { Stats, StatsContext } from '../Player/StatsContext';
 import useSharing from '../../hook/useSharing';
 import { Pdf, sharing } from '../../hook';
-
+import 'chart.js/auto';
+import { Chart } from 'react-chartjs-2';
+import { ChartOptions } from 'chart.js';
 
 // Optional parameters to pass to the swiper instance.
 // See http://idangero.us/swiper/api/ for valid options.
@@ -54,6 +56,41 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
 
                 {context.stats.map((stats, index) => {
 
+                    const chartData = {
+                        labels: [
+                        'Wins',
+                        'Losses'
+                        ],
+                        datasets: [{
+                        data: [stats.wins, stats.losses],
+                        backgroundColor: [
+                            '#36A2EB',
+                            '#761227'
+                        ],
+                        hoverBackgroundColor: [                            
+                            '#36A2EB',
+                            '#761227'
+                        ],
+                        borderColor: '#181818'
+                        }]
+                    };
+
+                    const options: ChartOptions = {
+                        /*
+                        responsive: true,  
+                        maintainAspectRatio: true, 
+                        aspectRatio: 2, */
+                         plugins: {
+                            legend: {                                    
+                             display: false,
+                                 position:'top', 
+                                 labels:{
+                                    padding: 40
+                                 },                                  
+                              },
+                            },                           
+                         }
+
                     var rank = stats.tier ? stats.tier : null;
                     if (rank !== null) {
                         rank = rank.toLowerCase();
@@ -77,6 +114,7 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
                             <IonItem className="statsItem ion-no-padding">
 
                                 <div className="countsCont">
+                                     {/*
                                     <div className="counts">
                                         <p className="ion-text-center winsCont">Wins</p>
                                         <div>
@@ -89,12 +127,13 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
                                             <p className="ion-text-center lossesCont">{stats.losses}</p>
                                         </div>
                                     </div>
+                                   <Doughnut data={chartData}/>*/}
+                                    <Chart type="doughnut" data={chartData} options={options}/>
+                                    <div id="absoluteBtns">
+                                        <IonButton onClick={() => WhatsApp()}> <IonIcon slot="end" icon={shareSocial} /></IonButton>
+                                        <IonButton onClick={() => goPdf(stats.queueType)}> <IonIcon slot="end" icon={rose} /></IonButton>
+                                    </div>
                                 </div>
-                            </IonItem>
-                            <IonItem className="ion-no-padding">
-                                <IonButton onClick={() => WhatsApp()}> <IonIcon slot="end" icon={shareSocial} /></IonButton>
-                                <IonButton onClick={() => goPdf(stats.queueType)}> <IonIcon slot="end" icon={rose} /></IonButton>
-
                             </IonItem>
                         </IonList>
                     </IonSlide >)
