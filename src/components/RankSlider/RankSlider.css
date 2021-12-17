@@ -33,14 +33,13 @@ ion-slides ion-list {
     position: absolute;
     width: 20vw;
     height: 20vw;
-    border-radius: 50%;
-    overflow: hidden;
-    background-color: white;
+    /*border-radius: 50%;
+    overflow: hidden;*/
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index:-10;
+    /*z-index:-10;*/
 }
 
 #absoluteBtns ion-button {

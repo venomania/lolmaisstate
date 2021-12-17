@@ -130,10 +130,14 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
                                    <Doughnut data={chartData}/>*/}
                                     <Chart type="doughnut" data={chartData} options={options}/>
                                     <div id="absoluteBtns">
-                                        <IonButton onClick={() => WhatsApp()}> <IonIcon slot="end" icon={shareSocial} /></IonButton>
-                                        <IonButton onClick={() => goPdf(stats.queueType)}> <IonIcon slot="end" icon={rose} /></IonButton>
+                                        <img src="assets/img/logo.png" />
                                     </div>
                                 </div>
+                            </IonItem>
+                                <IonButton onClick={() => WhatsApp()}><IonIcon slot="end" icon={shareSocial} /></IonButton>
+                                <IonButton onClick={() => goPdf(stats.queueType)}><IonIcon slot="end" icon={rose} /></IonButton>
+                            <IonItem>
+
                             </IonItem>
                         </IonList>
                     </IonSlide >)

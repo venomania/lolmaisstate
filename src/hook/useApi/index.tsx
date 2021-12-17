@@ -11,7 +11,7 @@ store.create();
 
 const useApi = () => {
     const context = useContext(StatsContext);
-    const key = "RGAPI-35e3a75c-6165-4aa0-a94a-13727b864d77";
+    const key = "RGAPI-337104c5-33d3-463d-8b19-661549def298";
     const [user, setUser] = useState<any>(null);
     const getUser = async (username: string) => {
 
