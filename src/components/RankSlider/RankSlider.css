@@ -9,6 +9,7 @@ ion-item {
 ion-slides ion-item>*,
 .bandeau strong {
     width: 100%;
+   
 }
 
 ion-slides ion-list {
@@ -30,8 +31,8 @@ ion-slides ion-list {
 }
 
 #absoluteBtns {
-    position: absolute;
-    width: 20vw;
+      position: absolute; 
+     width: 20vw;
     height: 20vw;
     border-radius: 50%;
     overflow: hidden;
@@ -39,24 +40,23 @@ ion-slides ion-list {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    z-index:-10;
+    align-items: center;  
 }
 
 #absoluteBtns ion-button {
-    width:110%;
+      width:110%;
     height:55%;
     margin:0;
     border-radius: 0;
-    --background: #565656;
+    --background: #565656;  
 }
 
 #absoluteBtns ion-button:nth-child(1) {
-    border-bottom:1px solid #181818;
+ border-bottom:1px solid #181818;
 }
 
 #absoluteBtns .button-native {
-    border-radius:0;
+     border-radius:0; 
 }
 
 .counts {
@@ -72,6 +72,10 @@ ion-slides ion-list {
     border-radius: 10px;
     /*border: 1px solid rgba(164, 57, 221, 0.7);
     background: linear-gradient(180deg, rgba(164, 57, 221, 0.7) 0%, rgba(24, 24, 24, 0.5) 30%, rgba(24, 24, 24, 0.3) 100%);*/
+}
+
+#char{
+    z-index: 0;
 }
 
 /*

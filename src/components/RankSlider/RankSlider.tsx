@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useMemo } from 'react';
+import React, { useEffect, useContext, useMemo, useState } from 'react';
 import { IonSlides, IonSlide, IonContent, IonImg, IonList, IonItem, IonButton, IonIcon } from '@ionic/react';
 import './RankSlider.css';
 import { rose, shareSocial, } from 'ionicons/icons';
@@ -30,6 +30,7 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
     const { WhatsApp } = sharing();
     const { goPdf } = Pdf();
     const { user } = useApi();
+    var ran = "";
     const context = useContext(StatsContext);
     const username = useMemo(() => {
         if (context?.stats[0]?.summonerName) {
@@ -46,7 +47,7 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
     function capitalizeFirstLetter(string: string | any[]) {
         return string[0].toUpperCase() + string.slice(1);
     }
-
+ 
     return (
         <IonContent>
             <IonItem className="bandeau ion-no-padding">
@@ -56,20 +57,24 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
 
                 {context.stats.map((stats, index) => {
 
-                    const chartData = {
+                    const chartData = { 
                         labels: [
                         'Wins',
                         'Losses'
                         ],
+                        
+
                         datasets: [{
                         data: [stats.wins, stats.losses],
+                        z:100,
+                        y:500,  
                         backgroundColor: [
                             '#36A2EB',
                             '#761227'
                         ],
                         hoverBackgroundColor: [                            
                             '#36A2EB',
-                            '#761227'
+                            '#761227'   
                         ],
                         borderColor: '#181818'
                         }]
@@ -85,7 +90,7 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
                              display: false,
                                  position:'top', 
                                  labels:{
-                                    padding: 40
+                                    padding: 40,
                                  },                                  
                               },
                             },                           
@@ -97,7 +102,8 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
                         rank = capitalizeFirstLetter(rank);
                     }
                     const icon = `assets/rank/Emblem_${rank}.png`;
-                    return (<IonSlide key={index} id={stats.queueType}>
+                   
+                    return (<IonSlide key={index} id={stats.queueType}  >
                         <IonList>
                             <IonItem className="leagueCont ion-no-padding">
                                 <strong className="ion-text-center">League {stats.queueType}</strong>
@@ -128,10 +134,10 @@ const RankComponent: React.FC<ContainerProps> = ({ name }) => {
                                         </div>
                                     </div>
                                    <Doughnut data={chartData}/>*/}
-                                    <Chart type="doughnut" data={chartData} options={options}/>
+                                    <Chart type="doughnut" data={chartData} options={options} id='char'/>
                                     <div id="absoluteBtns">
                                         <IonButton onClick={() => WhatsApp()}> <IonIcon slot="end" icon={shareSocial} /></IonButton>
-                                        <IonButton onClick={() => goPdf(stats.queueType)}> <IonIcon slot="end" icon={rose} /></IonButton>
+                                        <IonButton onClick={() => goPdf(stats.queueType,icon ,stats.losses,stats.wins  )}> <IonIcon slot="end" icon={rose} /></IonButton>
                                     </div>
                                 </div>
                             </IonItem>
